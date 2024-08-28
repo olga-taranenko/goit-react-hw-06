@@ -7,8 +7,10 @@ const SearchBox = () => {
   const searchInputId = useId();
   const dispatch = useDispatch();
   const searchValue = useSelector((state) => state.filter.searchValue);
-  const handleFilter = (value) => {
-    dispatch(setFilterValue(value));
+  const handleFilter = (event) => {
+    const value = event.target.value;
+    const action = setFilterValue(value);
+    dispatch(action);
   };
 
   return (
@@ -22,7 +24,7 @@ const SearchBox = () => {
         name="search"
         id={searchInputId}
         value={searchValue}
-        onChange={(e) => handleFilter(e.target.value)}
+        onChange={handleFilter}
       />
     </div>
   );
